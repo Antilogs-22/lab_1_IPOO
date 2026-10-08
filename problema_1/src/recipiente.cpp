@@ -10,7 +10,7 @@
  * @license GPL-3.0
  */
 
-#include "Recipiente.hpp"
+#include "recipiente.hpp"
 
 // Constante estatica para PI segun formula V = PI * r^2 * h
 static const double PI = 3.14159265358979323846;

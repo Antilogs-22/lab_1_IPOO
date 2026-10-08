@@ -1,16 +1,15 @@
-all: main
+all: bin/main
 
-# Enlace: construir UNICAMENTE el ejecutable 'main' con todos los .o
-main: Recipiente.o main.o
-	g++ -std=c++03 -Wall -Wextra -Werror Recipiente.o main.o -o main
+bin/main: src/recipiente.o src/main.o
+	g++ -std=c++03 -Wall -Wextra -Werror -pedantic src/recipiente.o src/main.o -o bin/main
 
-# Compilacion de cada unidad de traduccion a su .o (reglas explicitas)
-Recipiente.o: Recipiente.cpp Recipiente.hpp
-	g++ -std=c++03 -Wall -Wextra -Werror -c Recipiente.cpp
+src/recipiente.o: src/recipiente.cpp include/recipiente.hpp
+	g++ -std=c++03 -Wall -Wextra -Werror -pedantic -Iinclude -c src/recipiente.cpp -o src/recipiente.o
 
-main.o: main.cpp Recipiente.hpp
-	g++ -std=c++03 -Wall -Wextra -Werror -c main.cpp
+src/main.o: src/main.cpp include/recipiente.hpp
+	g++ -std=c++03 -Wall -Wextra -Werror -pedantic -Iinclude -c src/main.cpp -o src/main.o
 
-# Utilidades
 clean:
-	rm -f Recipiente.o main.o main
+	rm -f src/recipiente.o src/main.o bin/main
+
+

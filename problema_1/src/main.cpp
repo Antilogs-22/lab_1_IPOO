@@ -12,7 +12,7 @@
 
 #include <iostream>
 #include <iomanip>
-#include "Recipiente.hpp"
+#include "recipiente.hpp"
 
 static void ejecutarCasoPrueba(const char* nombrePrueba, bool resultado)
 {
