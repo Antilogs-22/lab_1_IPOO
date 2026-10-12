@@ -10,11 +10,11 @@
  11  */
 #ifndef ESTUDIANTE_HPP
 #define ESTUDIANTE_HPP
-
+#include <string>
 class Estudiante 
 {
 
-    /** metodos publicos y variables estaticas */
+    /** metodos publicos */
 
     public:
         
@@ -23,15 +23,9 @@ class Estudiante
         Estudiante();
         ~Estudiante();
 
-        /** Constantes estaticas corespondientes a los porcentajes que representa 
-        cada nota sobre la final con tal de que no se instancien en
-        memoria cada vez que se cree un nuevo objeto */
 
-        static const double PORCENTAJE_PROY;
-        static const double PORCENTAJE_EXP;
-        static const double PORCENTAJE_TAL;
-        static const double PORCENTAJE_PAR;
-        
+
+
         /** Metodos publicos correspondientes a :
 
             1. consultar la nota de cada trabajo
@@ -42,20 +36,62 @@ class Estudiante
 
         */
 
-        double ConsultarNota (std::string trabajo)const;
-        bool SetNota (std::string trabajo, double nota);
-        bool SetCodigo (std::string codigo);
-        void SetNombre (std::string nombre);
+        double ConsultarNotaExp()const;
+        bool SetNotaExp(double nota);
+
+        double ConsultarNotaProy()const;
+        bool SetNotaProy(double nota);
+
+        double ConsultarNotaTal()const;
+        bool SetNotaTal(double nota);
+        
+        double ConsultarNotaPar()const;
+        bool SetNotaPal(double nota);
+
+        bool SetCodigo(const std::string& codigo);
+        bool GetCodigo(const std::string& codigo);
+
+        void SetNombre (const std::string& nombre);
+        bool GetCodigo(const std::string& codigo);
+
         double CalcularNotaFinal() const;
 
+        bool SetPorcentajeProy(double porcentaje);
+        double GetPorcentajeProy()const;
+
+
+        bool SetPorcentajeExp(double porcentaje);
+        double GetPorcentajeExp()const;
+
+        bool SetPorcentajeTal(double porcentaje);
+        double GetPorcentajeTal()const;
+
+        bool SetPorcentajePar(double porcentaje);
+        double GetPorcentajePar()const;
+        bool SetNotaMax(double max);
+        double GetNotaMax()const;
+        bool SetNotaMin(double min);
+        double GetNotaMin()const; 
     /**Atributos y metodos privados */
 
     private:
 
-        float nota_proy_;
-        float nota_exp_;
-        float nota_tal_;
-        float nota_par_;
+                
+        /** Variables estaticas corespondientes a los porcentajes que representa 
+        cada nota sobre la final con tal de que no se instancien en
+        memoria cada vez que se cree un nuevo objeto */
+
+        static double porcentaje_proy;
+        static double porcentaje_exp;
+        static double porcentaje_tal;
+        static double porcentaje_par;
+        static double nota_min;
+        static double nota_max;
+
+        double nota_exp_;
+        double nota_proy_;
+        double nota_tal_;
+        double nota_par_;
         std::string nombre_;
         std::string codigo_;
 
