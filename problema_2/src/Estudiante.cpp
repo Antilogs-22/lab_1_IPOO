@@ -1,255 +1,121 @@
-#include "Estudiante.hpp"
+/**
+ * @file Estudiante.cpp
+ * @brief Implementación de la clase Estudiante.
+ * @author Darlyn Valeria Jurado Burbano (darlyn.jurado@correounivalle.edu.co)
+ * @author Santiago Andres Gomez Galvis (santiago.andres.gomez@correounivalle.edu.co)
+ * @author Marieth Leguizamo Fajardo (marieth.leguizamo@correounivalle.edu.co)
+ * @version 1.0
+ * @date 2026-10-08
+ * @license GPL-3.0
+ */
 
-Estudiante::Estudiante() : nota_exp_(0.0), nota_proy_(0.0), nota_tal_(0.0), nota_par_(0.0), nombre_(""), codigo_("")
+#include "estudiante.hpp"
+
+Estudiante::Estudiante()
+    : codigo_(""), nombre_(""), escala_(0.0, 5.0)
 {
-
+    componentes_[0] = Componente("Taller", 0.30);
+    componentes_[1] = Componente("Exposicion", 0.20);
+    componentes_[2] = Componente("Parcial", 0.20);
+    componentes_[3] = Componente("Proyecto", 0.30);
 }
 
 Estudiante::~Estudiante()
 {
 }
 
-double Estudiante::porcentaje_proy_=0.30;
-double Estudiante::porcentaje_exp_=0.20;
-double Estudiante::porcentaje_tal_=0.30;
-double Estudiante::porcentaje_par_=0.20;
-double Estudiante::nota_max_=5.0;
-double Estudiante::nota_min_=0.0; 
-
-double Estudiante::ConsultarNotaExp()const
+bool Estudiante::SetCodigo(const std::string& codigo)
 {
-  return nota_exp_;
-}
-
-bool Estudiante::SetNotaExp(double nota)
-{
-    if (nota < nota_min_ || nota > nota_max_)
+    if (codigo.length() != 12)
     {
         return false;
     }
-    else
-    {
-
-        Estudiante::nota_exp_ = nota;
-        return true; 
-
-    }
+    codigo_ = codigo;
+    return true;
 }
 
-double Estudiante::ConsultarNotaTal()const
-{
-    return nota_tal_;
-}
-
-bool Estudiante::SetNotaTal(double nota)
-{
-    if (nota < nota_min_ || nota > nota_max_)
-    {
-        return false;
-
-    }
-    else 
-    {
-        nota_tal_ = nota;
-        return true;    
-
-    }
-}
-
-double Estudiante::ConsultarNotaProy()const
-{
-    return nota_proy_;
-}
-
-bool Estudiante::SetNotaProy(double nota)
-{
-    if (nota < nota_min_ || nota > nota_max_)
-    {
-        return false;
-
-    }
-    else 
-    {
-        nota_proy_ = nota;
-        return true;    
-
-    }
-}
-double Estudiante::ConsultarNotaPar()const
-{
-    return nota_par_;
-}
-
-bool Estudiante::SetNotaPar(double nota)
-{
-    if (nota < nota_min_ || nota > nota_max_)
-    {
-        return false;
-
-    }
-    else 
-    {
-        nota_par_ = nota;
-        return true;    
-
-    }
-}
-
-
-std::string Estudiante::GetCodigo()const
+std::string Estudiante::GetCodigo() const
 {
     return codigo_;
 }
-bool Estudiante::SetCodigo(std::string& codigo)
-{
 
-    if (codigo.length()!= 12)
+bool Estudiante::SetNombre(const std::string& nombre)
+{
+    if (nombre.empty())
     {
         return false;
-
     }
-    else 
-    {
-        codigo_ = codigo;
-        return true;    
-
-    }
-
-
-
-}
-bool Estudiante::SetPorcentajeProy(double porcentaje)
-{
-    if (porcentaje < 0)
-    {
-     return false;
-    }
-    else
-    { 
-
-        if( porcentaje >= 1)
-        {
-            porcentaje_proy_ = porcentaje / 100;
-            return true;
-        }
-        else if (porcentaje < 1)
-        {
-            porcentaje_proy_ = porcentaje;
-            return true;
-
-        }
-    }
-}
-
-double Estudiante::GetPorcentajeProy()const
-{
-    return porcentaje_proy_;
-}
-
-
-bool Estudiante::SetPorcentajeExp(double porcentaje)
-{
-    if (porcentaje < 0)
-    {
-     return false;
-    }
-    else
-    { 
-
-        if( porcentaje >= 1)
-        {
-            porcentaje_exp_ = porcentaje / 100;
-            return true;
-        }
-        else if (porcentaje < 1)
-        {
-            porcentaje_exp_ = porcentaje;
-            return true;
-
-        }
-    }
-
-}
-double Estudiante::GetPorcentajeExp()const
-{
-    return porcentaje_exp_;
-}
-
-bool Estudiante::SetPorcentajeTal(double porcentaje)
-{
-
-    if (porcentaje < 0)
-    {
-     return false;
-    }
-    else
-    { 
-
-        if( porcentaje >= 1)
-        {
-            porcentaje_tal_ = porcentaje / 100;
-            return true;
-        }
-        else if (porcentaje < 1)
-        {
-            porcentaje_tal_ = porcentaje;
-            return true;
-
-        }
-    }
-
-}
-double Estudiante::GetPorcentajeTal()const
-{
-    return porcentaje_tal_;
-}
-bool Estudiante::SetPorcentajePar(double porcentaje)
-{
-
-    if (porcentaje < 0)
-    {
-     return false;
-    }
-    else
-    { 
-
-        if( porcentaje >= 1)
-        {
-            porcentaje_par_ = porcentaje / 100;
-            return true;
-        }
-        else if (porcentaje < 1)
-        {
-            porcentaje_par_ = porcentaje;
-            return true;
-
-        }
-    }
-
-
-}
-double Estudiante::GetPorcentajePar()const 
-{
-    return porcentaje_par_;
-}
-bool Estudiante::SetNotaMin(double min)
-{
-    nota_min_ = min;
+    nombre_ = nombre;
     return true;
 }
 
-bool Estudiante::SetNotaMax(double max)
+std::string Estudiante::GetNombre() const
 {
-    nota_max_ = max;
-    return true;
+    return nombre_;
 }
 
-double Estudiante::GetNotaMin() 
+bool Estudiante::RegistrarNota(int indice, double nota)
 {
-    return nota_min_;
+    if (indice < 0 || indice >= 4)
+    {
+        return false;
+    }
+
+    if (escala_.EsValida(nota))
+    {
+        componentes_[indice].SetNota(nota);
+        return true;
+    }
+    return false;
 }
 
-double Estudiante::GetNotaMax() 
+double Estudiante::CalcularNotaFinal() const
 {
-    return nota_max_;
+    double nota_final = 0.0;
+    for (int i = 0; i < 4; ++i)
+    {
+        nota_final += componentes_[i].CalcularAporte();
+    }
+    return nota_final;
+}
+
+std::string Estudiante::GetNombreComponente(int indice) const
+{
+    if (indice >= 0 && indice < 4)
+    {
+        return componentes_[indice].GetNombre();
+    }
+    return "";
+}
+
+double Estudiante::GetNotaComponente(int indice) const
+{
+    if (indice >= 0 && indice < 4)
+    {
+        return componentes_[indice].GetNota();
+    }
+    return 0.0;
+}
+
+void Estudiante::SetEscala(double min, double max)
+{
+    escala_ = Escala(min, max);
+}
+
+void Estudiante::SetPorcentajes(double p0, double p1, double p2, double p3)
+{
+    componentes_[0].SetPorcentaje(p0);
+    componentes_[1].SetPorcentaje(p1);
+    componentes_[2].SetPorcentaje(p2);
+    componentes_[3].SetPorcentaje(p3);
+}
+
+Escala& Estudiante::GetEscala()
+{
+    return escala_;
+}
+
+const Escala& Estudiante::GetEscala() const
+{
+    return escala_;
 }

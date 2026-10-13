@@ -1,105 +1,53 @@
 /**
-  2  * @file Estudiante.hpp
-  3  * @author Darlyn Valeria Jurado Burbano (darlyn.jurado@correounivalle.edu.co)
-  4  * @author Santiago Andres Gomez Galvis (santiago.andres.gomez@correounivalle.edu.co)
-  6  * @author Marieth Leguizamo Fajardo (marieth.leguizamo@correounivalle.edu.co)
-  7  * @brief 
-  8  * @version 1.0
-  9  * @date 2026-10-08
- 10  * @license GPL-3.0
- 11  */
+ * @file Estudiante.hpp
+ * @brief Define la clase Estudiante que agrupa componentes evaluativos y escala.
+ * @author Darlyn Valeria Jurado Burbano (darlyn.jurado@correounivalle.edu.co)
+ * @author Santiago Andres Gomez Galvis (santiago.andres.gomez@correounivalle.edu.co)
+ * @author Marieth Leguizamo Fajardo (marieth.leguizamo@correounivalle.edu.co)
+ * @version 1.0
+ * @date 2026-10-08
+ * @license GPL-3.0
+ */
+
 #ifndef ESTUDIANTE_HPP
 #define ESTUDIANTE_HPP
+
 #include <string>
-class Estudiante 
+#include "componente.hpp"
+#include "escala.hpp"
+
+/**
+ * @brief Modela la información académica y calificaciones de un estudiante.
+ */
+class Estudiante
 {
+private:
+    std::string codigo_;
+    std::string nombre_;
+    Escala escala_;
+    Componente componentes_[4];
 
-    /** metodos publicos */
+public:
+    Estudiante();
+    ~Estudiante();
 
-    public:
-        
-        /**contructor y destructor de la clase Estudiante */
+    bool SetCodigo(const std::string& codigo);
+    std::string GetCodigo() const;
 
-        Estudiante();
-        ~Estudiante();
+    bool SetNombre(const std::string& nombre);
+    std::string GetNombre() const;
 
+    bool RegistrarNota(int indice, double nota);
+    double CalcularNotaFinal() const;
 
+    std::string GetNombreComponente(int indice) const;
+    double GetNotaComponente(int indice) const;
 
-
-        /** Metodos publicos correspondientes a :
-
-            1. consultar la nota de cada trabajo
-            2. ingresar la nota correspondiente a cada trabajo
-            3. ingresar el codigo identificador del estudiante 
-            4. ingresar el nombre del estudiante
-            5. calcular la nota final del estudiante 
-
-        */
-
-        double ConsultarNotaExp()const;
-        bool SetNotaExp(double nota);
-
-        double ConsultarNotaProy()const;
-        bool SetNotaProy(double nota);
-
-        double ConsultarNotaTal()const;
-        bool SetNotaTal(double nota);
-        
-        double ConsultarNotaPar()const;
-        bool SetNotaPal(double nota);
-
-        bool SetCodigo(const std::string& codigo);
-        bool GetCodigo(const std::string& codigo);
-
-        void SetNombre (const std::string& nombre);
-        bool GetCodigo(const std::string& codigo);
-
-        double CalcularNotaFinal() const;
-
-        bool SetPorcentajeProy(double porcentaje);
-        double GetPorcentajeProy()const;
-
-
-        bool SetPorcentajeExp(double porcentaje);
-        double GetPorcentajeExp()const;
-
-        bool SetPorcentajeTal(double porcentaje);
-        double GetPorcentajeTal()const;
-
-        bool SetPorcentajePar(double porcentaje);
-        double GetPorcentajePar()const;
-        bool SetNotaMax(double max);
-        double GetNotaMax()const;
-        bool SetNotaMin(double min);
-        double GetNotaMin()const; 
-    /**Atributos y metodos privados */
-
-    private:
-
-                
-        /** Variables estaticas corespondientes a los porcentajes que representa 
-        cada nota sobre la final con tal de que no se instancien en
-        memoria cada vez que se cree un nuevo objeto */
-
-        static double porcentaje_proy;
-        static double porcentaje_exp;
-        static double porcentaje_tal;
-        static double porcentaje_par;
-        static double nota_min;
-        static double nota_max;
-
-        double nota_exp_;
-        double nota_proy_;
-        double nota_tal_;
-        double nota_par_;
-        std::string nombre_;
-        std::string codigo_;
-
+    void SetEscala(double min, double max);
+    void SetPorcentajes(double p0, double p1, double p2, double p3);
+    
+    Escala& GetEscala();
+    const Escala& GetEscala() const;
 };
-#endif
 
-
-
-
-
-
+#endif 

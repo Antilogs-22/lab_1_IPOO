@@ -1,7 +1,7 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 
-#include "Estudiante.hpp"
+#include "estudiante.hpp"
 #include <vector>
 #include <string>
 
@@ -11,14 +11,11 @@ private:
     std::vector<Estudiante> estudiantes_;
 
     void MostrarOpciones() const;
-    void  MostrarSubMenu(Estudiante& estudiante);
-    void PedirCodigo();
-    void PedirNombre();
-    void ConsultarTrabajo() const;
-    void ConsultarNotaTrabajo() const;
-    void MostrarNotaFinal() const;
-    void ConsultarEstudiantesi() const;
+    void MenuEstudiante(Estudiante& estudianteActual);
+    void MenuNota(Estudiante& estudianteActual);
     void AgregarEstudiante();
+    void CambiarPorcentajes();
+    void CambiarEscalaCalificacion();
     Estudiante* BuscarCodigo(const std::string& codigo);
 
 public:
