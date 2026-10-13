@@ -1,10 +1,10 @@
 /**
  * @file componente.cpp
- * @brief Métodos de la clase Componente.
+ * @brief Implementación de la clase Componente.
  * @author Darlyn Valeria Jurado Burbano (darlyn.jurado@correounivalle.edu.co)
  * @author Santiago Andres Gomez Galvis (santiago.andres.gomez@correounivalle.edu.co)
  * @author Marieth Leguizamo Fajardo (marieth.leguizamo@correounivalle.edu.co)
- * @version 1.3
+ * @version 2.0
  * @date 2026-10-13
  * @license GPL-3.0
  */
@@ -20,32 +20,32 @@ Componente::~Componente()
 {
 }
 
-std::string Componente::GetNombre() const
+std::string Componente::getNombre() const
 {
     return nombre_;
 }
 
-double Componente::GetPorcentaje() const
+double Componente::getPorcentaje() const
 {
     return porcentaje_;
 }
 
-double Componente::GetNota() const
+double Componente::getNota() const
 {
     return nota_;
 }
 
-void Componente::SetPorcentaje(double porcentaje)
-{
-    porcentaje_ = porcentaje;
-}
-
-void Componente::SetNota(double nota)
+void Componente::setNota(double nota)
 {
     nota_ = nota;
 }
 
-double Componente::CalcularAporte() const
+void Componente::setPorcentaje(double porcentaje)
 {
-    return nota_ * porcentaje_;
+    porcentaje_ = porcentaje;
+}
+
+double Componente::calcularAporte() const
+{
+    return (nota_ * porcentaje_) / 100.0;
 }

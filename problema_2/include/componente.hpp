@@ -1,10 +1,10 @@
 /**
  * @file componente.hpp
- * @brief Guarda la info de cada trabajo o examen con su porcentaje y nota.
+ * @brief Define un rubro evaluativo con su nombre, porcentaje y nota[cite: 23].
  * @author Darlyn Valeria Jurado Burbano (darlyn.jurado@correounivalle.edu.co)
  * @author Santiago Andres Gomez Galvis (santiago.andres.gomez@correounivalle.edu.co)
  * @author Marieth Leguizamo Fajardo (marieth.leguizamo@correounivalle.edu.co)
- * @version 1.3
+ * @version 2.0
  * @date 2026-10-13
  * @license GPL-3.0
  */
@@ -15,7 +15,7 @@
 #include <string>
 
 /**
- * @brief Modela un rubro de la nota definitiva del curso.
+ * @brief Modela una parte de la nota final con su respectivo peso porcentual[cite: 23].
  */
 class Componente
 {
@@ -26,52 +26,52 @@ private:
 
 public:
     /**
-     * @brief Constructor para inicializar el componente con su nombre y porcentaje.
-     * @param [in] nombre Nombre del trabajo (ej. Taller, Parcial).
-     * @param [in] porcentaje Porcentaje que vale dentro de la nota.
+     * @brief Constructor del componente evaluativo[cite: 25].
+     * @param [in] nombre Identificador del componente (Proyecto, Exposicion, etc.).
+     * @param [in] porcentaje Peso porcentual dentro del 100%[cite: 21].
      */
     Componente(std::string nombre = "", double porcentaje = 0.0);
-    
+
     /**
      * @brief Destructor de la clase Componente.
      */
     ~Componente();
 
     /**
-     * @brief Devuelve el nombre del componente.
-     * @return El nombre del trabajo.
+     * @brief Obtiene el nombre del componente[cite: 25].
+     * @return Nombre del rubro.
      */
-    std::string GetNombre() const;
+    std::string getNombre() const;
 
     /**
-     * @brief Devuelve el porcentaje configurado para el componente.
-     * @return El porcentaje actual.
+     * @brief Obtiene el porcentaje asignado al componente[cite: 25].
+     * @return Porcentaje de ponderación.
      */
-    double GetPorcentaje() const;
+    double getPorcentaje() const;
 
     /**
-     * @brief Devuelve la nota que se le metió al componente.
-     * @return La calificación guardada.
+     * @brief Obtiene la nota registrada en el componente[cite: 25].
+     * @return Calificación numérica.
      */
-    double GetNota() const;
+    double getNota() const;
 
     /**
-     * @brief Cambia el porcentaje del componente.
-     * @param [in] porcentaje Nuevo porcentaje a aplicar.
+     * @brief Asigna una calificación al componente[cite: 25].
+     * @param [in] nota Valor de la nota.
      */
-    void SetPorcentaje(double porcentaje);
+    void setNota(double nota);
 
     /**
-     * @brief Guarda la nota del componente.
-     * @param [in] nota Calificación obtenida.
+     * @brief Modifica el porcentaje del componente.
+     * @param [in] porcentaje Nuevo valor porcentual.
      */
-    void SetNota(double nota);
+    void setPorcentaje(double porcentaje);
 
     /**
-     * @brief Saca cuánto aporta este componente a la nota final.
-     * @return Nota multiplicada por su porcentaje.
+     * @brief Calcula el aporte ponderado del componente a la nota final[cite: 27].
+     * @return El valor de (nota * porcentaje / 100)[cite: 27].
      */
-    double CalcularAporte() const;
+    double calcularAporte() const;
 };
 
 #endif

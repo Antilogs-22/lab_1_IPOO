@@ -1,10 +1,10 @@
 /**
  * @file estudiante.hpp
- * @brief Maneja los datos del estudiante y sus notas en los componentes.
+ * @brief Modela al estudiante que agrupa la escala y los cuatro componentes[cite: 21, 25].
  * @author Darlyn Valeria Jurado Burbano (darlyn.jurado@correounivalle.edu.co)
  * @author Santiago Andres Gomez Galvis (santiago.andres.gomez@correounivalle.edu.co)
  * @author Marieth Leguizamo Fajardo (marieth.leguizamo@correounivalle.edu.co)
- * @version 1.3
+ * @version 2.0
  * @date 2026-10-13
  * @license GPL-3.0
  */
@@ -13,25 +13,24 @@
 #define ESTUDIANTE_HPP
 
 #include <string>
-#include "componente.hpp"
 #include "escala.hpp"
+#include "componente.hpp"
 
 /**
- * @brief Agrupa la info del alumno y sus cuatro notas del curso.
+ * @brief Administra las notas de los componentes y calcula la nota definitiva del curso[cite: 21, 23, 25].
  */
 class Estudiante
 {
 private:
-    std::string codigo_;
-    std::string nombre_;
     Escala escala_;
     Componente componentes_[4];
 
 public:
     /**
-     * @brief Constructor por defecto que arma los 4 componentes iniciales.
+     * @brief Constructor que inicializa la escala y los 4 componentes por defecto[cite: 21, 25].
+     * @param [in] escala Objeto Escala que define los límites permitidos.
      */
-    Estudiante();
+    Estudiante(Escala escala = Escala(0.0, 5.0));
 
     /**
      * @brief Destructor de la clase Estudiante.
@@ -39,89 +38,47 @@ public:
     ~Estudiante();
 
     /**
-     * @brief Guarda el código del estudiante verificando que tenga 12 caracteres.
-     * @pre El código debe medir exactamente 12 caracteres.
-     * @param [in] codigo Código del alumno.
-     * @return true si se guardó bien, false si falló la validación.
+     * @brief Valida y registra una nota en el componente indicado[cite: 28].
+     * @pre El índice debe estar entre 0 y 3, y la nota debe cumplir con la escala[cite: 28].
+     * @param [in] indice Posición del componente (0 a 3)[cite: 28].
+     * @param [in] nota Calificación obtenida[cite: 28].
+     * @return true si se guardó correctamente, false si no es válida[cite: 28].
      */
-    bool SetCodigo(const std::string& codigo);
+    bool registrarNota(int indice, double nota);
 
     /**
-     * @brief Devuelve el código del estudiante.
-     * @return El código actual.
+     * @brief Suma los aportes de todos los componentes para calcular la nota final[cite: 21, 24].
+     * @return La calificación definitiva del curso[cite: 21].
      */
-    std::string GetCodigo() const;
+    double calcularNotaFinal() const;
 
     /**
-     * @brief Guarda el nombre del estudiante.
-     * @pre El nombre no puede estar vacío.
-     * @param [in] nombre Nombre completo.
-     * @return true si se guardó bien, false si venía vacío.
+     * @brief Obtiene el nombre del componente según su índice[cite: 25].
+     * @param [in] indice Posición numérica (0 a 3).
+     * @return Nombre del rubro evaluativo.
      */
-    bool SetNombre(const std::string& nombre);
+    std::string getNombreComponente(int indice) const;
 
     /**
-     * @brief Devuelve el nombre del estudiante.
-     * @return El nombre guardado.
+     * @brief Configura una nueva escala para el estudiante.
+     * @param [in] escala Objeto Escala actualizado.
      */
-    std::string GetNombre() const;
+    void setEscala(Escala escala);
 
     /**
-     * @brief Guarda una nota en el componente que le toque.
-     * @pre El índice va de 0 a 3 y la nota debe respetar la escala.
-     * @param [in] indice Posición del componente (0 a 3).
-     * @param [in] nota Valor de la nota.
-     * @return true si la guardó, false si la nota no sirve o el índice está malo.
-     */
-    bool RegistrarNota(int indice, double nota);
-
-    /**
-     * @brief Saca la nota final sumando los aportes de todos los componentes.
-     * @return La definitiva del alumno.
-     */
-    double CalcularNotaFinal() const;
-
-    /**
-     * @brief Da el nombre del componente según su posición.
-     * @param [in] indice Posición (0 a 3).
-     * @return El nombre del trabajo o vacío si no existe.
-     */
-    std::string GetNombreComponente(int indice) const;
-
-    /**
-     * @brief Da la nota que tiene un componente.
-     * @param [in] indice Posición (0 a 3).
-     * @return La nota de ese componente o 0.0 si está malo el índice.
-     */
-    double GetNotaComponente(int indice) const;
-
-    /**
-     * @brief Cambia los límites de la escala de notas.
-     * @param [in] min Nuevo mínimo.
-     * @param [in] max Nuevo máximo.
-     */
-    void SetEscala(double min, double max);
-
-    /**
-     * @brief Cambia los porcentajes de los cuatro trabajos.
-     * @param [in] p0 Porcentaje del taller.
+     * @brief Configura los porcentajes de los cuatro componentes.
+     * @param [in] p0 Porcentaje del proyecto.
      * @param [in] p1 Porcentaje de la exposición.
-     * @param [in] p2 Porcentaje del parcial.
-     * @param [in] p3 Porcentaje del proyecto.
+     * @param [in] p2 Porcentaje de los talleres.
+     * @param [in] p3 Porcentaje del parcial.
      */
-    void SetPorcentajes(double p0, double p1, double p2, double p3);
-    
-    /**
-     * @brief Da acceso a la escala para modificarla.
-     * @return Referencia a la escala.
-     */
-    Escala& GetEscala();
+    void setPorcentajes(double p0, double p1, double p2, double p3);
 
     /**
-     * @brief Da acceso a la escala solo para leerla.
-     * @return Referencia constante a la escala.
+     * @brief Obtiene la escala actual del estudiante.
+     * @return Referencia constante al objeto Escala.
      */
-    const Escala& GetEscala() const;
+    Escala getEscala() const;
 };
 
 #endif

@@ -1,10 +1,10 @@
 /**
  * @file escala.cpp
- * @brief Métodos de la clase Escala.
+ * @brief Implementación de la clase Escala.
  * @author Darlyn Valeria Jurado Burbano (darlyn.jurado@correounivalle.edu.co)
  * @author Santiago Andres Gomez Galvis (santiago.andres.gomez@correounivalle.edu.co)
  * @author Marieth Leguizamo Fajardo (marieth.leguizamo@correounivalle.edu.co)
- * @version 1.3
+ * @version 2.0
  * @date 2026-10-13
  * @license GPL-3.0
  */
@@ -20,17 +20,17 @@ Escala::~Escala()
 {
 }
 
-double Escala::GetMinimo() const
+double Escala::getMinimo() const
 {
     return minimo_;
 }
 
-double Escala::GetMaximo() const
+double Escala::getMaximo() const
 {
     return maximo_;
 }
 
-bool Escala::is_valida(double nota) const
+bool Escala::esValida(double nota) const
 {
     return (nota >= minimo_ && nota <= maximo_);
 }
