@@ -1,14 +1,11 @@
 /**
- * @file Menu.cpp
- * @brief Implementación de la clase Menu para el sistema de notas.
- * 
- * Gestiona la interfaz de usuario y la interacción por consola.
- * 
+ * @file menu.cpp
+ * @brief Lógica de los menús y la consola.
  * @author Darlyn Valeria Jurado Burbano (darlyn.jurado@correounivalle.edu.co)
  * @author Santiago Andres Gomez Galvis (santiago.andres.gomez@correounivalle.edu.co)
  * @author Marieth Leguizamo Fajardo (marieth.leguizamo@correounivalle.edu.co)
- * @version 1.0
- * @date 2026-10-08
+ * @version 1.3
+ * @date 2026-10-13
  * @license GPL-3.0
  */
 
@@ -47,7 +44,7 @@ Estudiante* Menu::BuscarCodigo(const std::string& codigo)
     return NULL;
 }
 
-void Menu::MenuNota(Estudiante& estudianteActual)
+void Menu::MenuNota(Estudiante& estudiante_actual)
 {
     int opcion = 0;
     double nota = 0.0;
@@ -74,7 +71,7 @@ void Menu::MenuNota(Estudiante& estudianteActual)
                 std::cout << "taller" << std::endl;
                 std::cout << "ingrese la nota del taller: ";
                 std::cin >> nota;
-                if (estudianteActual.RegistrarNota(0, nota)) 
+                if (estudiante_actual.RegistrarNota(0, nota)) 
                 {
                     std::cout << "nota de taller guardada." << std::endl;
                 } 
@@ -89,7 +86,7 @@ void Menu::MenuNota(Estudiante& estudianteActual)
                 std::cout << "exposicion" << std::endl;
                 std::cout << "ingrese la nota de la exposicion: ";
                 std::cin >> nota;
-                if (estudianteActual.RegistrarNota(1, nota)) 
+                if (estudiante_actual.RegistrarNota(1, nota)) 
                 {
                     std::cout << "nota de exposicion guardada." << std::endl;
                 } 
@@ -104,7 +101,7 @@ void Menu::MenuNota(Estudiante& estudianteActual)
                 std::cout << "parcial" << std::endl;
                 std::cout << "ingrese la nota del parcial: ";
                 std::cin >> nota;
-                if (estudianteActual.RegistrarNota(2, nota)) 
+                if (estudiante_actual.RegistrarNota(2, nota)) 
                 {
                     std::cout << "nota de parcial guardada." << std::endl;
                 } 
@@ -119,7 +116,7 @@ void Menu::MenuNota(Estudiante& estudianteActual)
                 std::cout << "proyecto" << std::endl;
                 std::cout << "ingrese la nota del proyecto: ";
                 std::cin >> nota;
-                if (estudianteActual.RegistrarNota(3, nota)) 
+                if (estudiante_actual.RegistrarNota(3, nota)) 
                 {
                     std::cout << "nota de proyecto guardada." << std::endl;
                 } 
@@ -148,7 +145,7 @@ void Menu::MenuNota(Estudiante& estudianteActual)
     } while (opcion != 5);
 }
 
-void Menu::MenuEstudiante(Estudiante& estudianteActual)
+void Menu::MenuEstudiante(Estudiante& estudiante_actual)
 {
     int opcion = 0;
 
@@ -168,7 +165,7 @@ void Menu::MenuEstudiante(Estudiante& estudianteActual)
             case 1:
             {
                 std::cout << "\033[2J\033[1;1H";
-                MenuNota(estudianteActual);
+                MenuNota(estudiante_actual);
                 break;
             }
             case 2:
@@ -187,7 +184,7 @@ void Menu::MenuEstudiante(Estudiante& estudianteActual)
 
 void Menu::AgregarEstudiante()
 {
-    Estudiante nuevoEstudiante;
+    Estudiante nuevo_estudiante;
     std::string codigo = ""; 
     std::string nombre = "";
     
@@ -210,51 +207,51 @@ void Menu::AgregarEstudiante()
     std::cout << "ingrese el nombre: ";
     std::getline(std::cin, nombre); 
 
-    nuevoEstudiante.SetCodigo(codigo);
-    nuevoEstudiante.SetNombre(nombre);
+    nuevo_estudiante.SetCodigo(codigo);
+    nuevo_estudiante.SetNombre(nombre);
     
-    estudiantes_.push_back(nuevoEstudiante); 
+    estudiantes_.push_back(nuevo_estudiante); 
     std::cout << "estudiante agregado." << std::endl;
 }
 
 void Menu::CambiarPorcentajes()
 {
-    double tal = 0.0;
-    double exp = 0.0;
-    double par = 0.0;
-    double proy = 0.0;
+    double porcentaje_taller = 0.0;
+    double porcentaje_exposicion = 0.0;
+    double porcentaje_parcial = 0.0;
+    double porcentaje_proyecto = 0.0;
     
     std::cout << "ingrese el nuevo porcentaje para taller: ";
-    std::cin >> tal;
+    std::cin >> porcentaje_taller;
     std::cin.ignore(10000, '\n');
 
     std::cout << "ingrese el nuevo porcentaje para exposicion: ";
-    std::cin >> exp;
+    std::cin >> porcentaje_exposicion;
     std::cin.ignore(10000, '\n');
 
     std::cout << "ingrese el nuevo porcentaje para parcial: ";
-    std::cin >> par;
+    std::cin >> porcentaje_parcial;
     std::cin.ignore(10000, '\n');
 
     std::cout << "ingrese el nuevo porcentaje para proyecto: ";
-    std::cin >> proy;
+    std::cin >> porcentaje_proyecto;
     std::cin.ignore(10000, '\n');
 
-    if (tal >= 1.0) 
+    if (porcentaje_taller >= 1.0) 
     {
-        tal /= 100.0;
+        porcentaje_taller /= 100.0;
     }
-    if (exp >= 1.0) 
+    if (porcentaje_exposicion >= 1.0) 
     {
-        exp /= 100.0;
+        porcentaje_exposicion /= 100.0;
     }
-    if (par >= 1.0) 
+    if (porcentaje_parcial >= 1.0) 
     {
-        par /= 100.0;
+        porcentaje_parcial /= 100.0;
     }
-    if (proy >= 1.0) 
+    if (porcentaje_proyecto >= 1.0) 
     {
-        proy /= 100.0;
+        porcentaje_proyecto /= 100.0;
     }
 
     if (estudiantes_.empty()) 
@@ -265,7 +262,7 @@ void Menu::CambiarPorcentajes()
     {
         for (size_t i = 0; i < estudiantes_.size(); ++i) 
         {
-            estudiantes_[i].SetPorcentajes(tal, exp, par, proy);
+            estudiantes_[i].SetPorcentajes(porcentaje_taller, porcentaje_exposicion, porcentaje_parcial, porcentaje_proyecto);
         }
     }
     
@@ -326,16 +323,16 @@ void Menu::Ejecutar()
             }
             case 2: 
             {
-                std::string codigoBuscado = "";
+                std::string codigo_buscado = "";
                 std::cout << "ingrese el codigo del estudiante a buscar: ";
-                std::cin >> codigoBuscado;
+                std::cin >> codigo_buscado;
 
-                Estudiante* ptrEstudiante = BuscarCodigo(codigoBuscado);
+                Estudiante* ptr_estudiante = BuscarCodigo(codigo_buscado);
 
-                if (ptrEstudiante != NULL) 
+                if (ptr_estudiante != NULL) 
                 {
                     std::cout << "\033[2J\033[1;1H";
-                    MenuEstudiante(*ptrEstudiante); 
+                    MenuEstudiante(*ptr_estudiante); 
                 } 
                 else 
                 {

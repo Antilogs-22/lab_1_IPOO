@@ -1,20 +1,21 @@
-sistema_notas: main.o Menu.o Estudiante.o Escala.o Componente.o
-	g++ -Wall -Wextra -std=c++03 -Iinclude -o sistema_notas main.o Menu.o Estudiante.o Escala.o Componente.o
+sistema_notas: main.o menu.o estudiante.o escala.o componente.o
+	g++ -Wall -Wextra -std=c++03 -Iinclude -o sistema_notas main.o menu.o estudiante.o escala.o componente.o
 
 main.o: src/main.cpp
-	g++ -Wall -Wextra -std=c++03 -Iinclude -c src/main.cpp
+	g++ -Wall -Wextra -std=c++03 -Iinclude -c src/main.cpp -o main.o
 
-Menu.o: src/Menu.cpp
-	g++ -Wall -Wextra -std=c++03 -Iinclude -c src/Menu.cpp
+menu.o: src/menu.cpp
+	g++ -Wall -Wextra -std=c++03 -Iinclude -c src/menu.cpp -o menu.o
 
-Estudiante.o: src/Estudiante.cpp
-	g++ -Wall -Wextra -std=c++03 -Iinclude -c src/Estudiante.cpp
+estudiante.o: src/estudiante.cpp
+	g++ -Wall -Wextra -std=c++03 -Iinclude -c src/estudiante.cpp -o estudiante.o
 
-Escala.o: src/Escala.cpp
-	g++ -Wall -Wextra -std=c++03 -Iinclude -c src/Escala.cpp
+escala.o: src/escala.cpp
+	g++ -Wall -Wextra -std=c++03 -Iinclude -c src/escala.cpp -o escala.o
 
-Componente.o: src/Componente.cpp
-	g++ -Wall -Wextra -std=c++03 -Iinclude -c src/Componente.cpp
+componente.o: src/componente.cpp
+	g++ -Wall -Wextra -std=c++03 -Iinclude -c src/componente.cpp -o componente.o
+
 
 clean:
 	rm -f *.o sistema_notas

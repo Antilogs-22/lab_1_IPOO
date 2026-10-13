@@ -1,11 +1,11 @@
 /**
- * @file Componente.cpp
- * @brief Implementación de la clase Componente.
+ * @file componente.cpp
+ * @brief Métodos de la clase Componente.
  * @author Darlyn Valeria Jurado Burbano (darlyn.jurado@correounivalle.edu.co)
  * @author Santiago Andres Gomez Galvis (santiago.andres.gomez@correounivalle.edu.co)
  * @author Marieth Leguizamo Fajardo (marieth.leguizamo@correounivalle.edu.co)
- * @version 1.0
- * @date 2026-10-08
+ * @version 1.3
+ * @date 2026-10-13
  * @license GPL-3.0
  */
 
